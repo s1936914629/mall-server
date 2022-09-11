@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.org.sqx.mall.product.webapi.mapper.CategoryMapper">
+
+    <!-- int insert(Category category); -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into pms_category (name, parent_id, depth, keywords, sort,
+                                  icon, enable, is_parent, is_display, gmt_create,
+                                  gmt_modified)
+        values (#{name}, #{parentId}, #{depth}, #{keywords}, #{sort},
+                #{icon}, #{enable}, #{isParent}, #{isDisplay}, #{gmtCreate},
+                #{gmtModified})
+    </insert>
+</mapper>

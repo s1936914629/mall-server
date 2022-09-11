@@ -20,6 +20,7 @@
     <!-- 当前Project的各子级Module -->
     <modules>
         <module>mall-product</module>
+        <module>mall-pojo</module>
     </modules>
 
 
@@ -37,7 +38,14 @@
 
     <!-- 依赖管理，主要管理各依赖项的版本，使得子级Module添加依赖时不必指定版本 -->
     <dependencyManagement>
+
         <dependencies>
+            <!-- mall POJO -->
+            <dependency>
+                <groupId>cn.org.sqx</groupId>
+                <artifactId>mall-pojo</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
             <!-- Spring Boot Validation：验证请求参数的基本格式 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

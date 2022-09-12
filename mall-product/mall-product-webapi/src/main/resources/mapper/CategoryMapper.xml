@@ -14,25 +14,45 @@
                 #{gmtModified})
     </insert>
 
+    <!-- int updateIsParentById(@Param("id") Long id, @Param("isParent") Integer isParent); -->
+    <update id="updateIsParentById">
+        update
+            pms_category
+        set
+            is_parent=#{isParent}
+        where
+              id = #{id};
+    </update>
+
     <!-- CategorySimpleVO getByName(String name); -->
     <select id="getByName" resultMap="SimpleResultMap">
-        select id from pms_category where name=#{name};
+        select
+            <include refid="SimpleQueryFields"/>
+        from
+             pms_category
+        where
+              name = #{name};
     </select>
 
     <!-- CategorySimpleVO getById(Long id); -->
     <select id="getById" resultMap="SimpleResultMap">
-        select id, depth,is_parent from pms_category where id=#{id};
+        select
+            <include refid="SimpleQueryFields"/>
+        from
+             pms_category
+        where
+              id=#{id};
     </select>
 
-    <!-- int updateIsParentById(@Param("id") Long id, @Param("isParent") Integer isParent); -->
-    <update id="updateIsParentById">
-        update pms_category set is_parent=#{isParent} where id=#{id}
-    </update>
-
+    <sql id="SimpleQueryFields">
+        <if test="true">
+            id, depth, is_parent
+        </if>
+    </sql>
 
     <resultMap id="SimpleResultMap" type="cn.org.sqx.mall.pojo.vo.CategorySimpleVO">
-        <id column="id" property="id" />
-        <result column="depth" property="depth" />
-        <result column="isParent" property="isParent" />
+        <id column="id" property="id"/>
+        <result column="depth" property="depth"/>
+        <result column="isParent" property="isParent"/>
     </resultMap>
 </mapper>

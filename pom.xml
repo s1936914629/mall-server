@@ -21,6 +21,7 @@
     <modules>
         <module>mall-product</module>
         <module>mall-pojo</module>
+        <module>mall-common</module>
     </modules>
 
 
@@ -48,7 +49,12 @@
             </dependency>
             <dependency>
                 <groupId>cn.org.sqx</groupId>
-                <artifactId>csmall-product-service</artifactId>
+                <artifactId>mall-product-service</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.org.sqx</groupId>
+                <artifactId>mall-common</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <!-- Spring Boot Validation：验证请求参数的基本格式 -->

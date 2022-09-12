@@ -49,6 +49,36 @@ public class CategoryMapperTests {
     }
 
     @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    public void testUpdateIsParentByIdSuccessfully() {
+        // 测试数据
+        Long id = 1L;
+        Integer isParent = 1;
+        // 断言不会抛出异常
+        assertDoesNotThrow(() -> {
+            // 执行测试
+            int rows = mapper.updateIsParentById(id, isParent);
+            // 断言受影响的行数为1
+            assertEquals(1, rows);
+        });
+    }
+
+    @Test
+    @Sql({"classpath:truncate.sql"})
+    public void testUpdateIsParentByIdFailBecauseNotFound() {
+        // 测试数据
+        Long id = -1L;
+        Integer isParent = 1;
+        // 断言不会抛出异常
+        assertDoesNotThrow(() -> {
+            // 执行测试
+            int rows = mapper.updateIsParentById(id, isParent);
+            // 断言受影响的行数为0
+            assertEquals(0, rows);
+        });
+    }
+
+    @Test
     @Sql({"classpath:truncate.sql"})
     public void testGetByNameFailBecauseNotFound() {
         // 测试数据
@@ -90,35 +120,7 @@ public class CategoryMapperTests {
         });
     }
 
-    @Test
-    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
-    public void testUpdateIsParentByIdSuccessfully() {
-        // 测试数据
-        Long id = 1L;
-        Integer isParent = 1;
-        // 断言不会抛出异常
-        assertDoesNotThrow(() -> {
-            // 执行测试
-            int rows = mapper.updateIsParentById(id, isParent);
-            // 断言受影响的行数为1
-            assertEquals(1, rows);
-        });
-    }
 
-    @Test
-    @Sql({"classpath:truncate.sql"})
-    public void testUpdateIsParentByIdFailBecauseNotFound() {
-        // 测试数据
-        Long id = -1L;
-        Integer isParent = 1;
-        // 断言不会抛出异常
-        assertDoesNotThrow(() -> {
-            // 执行测试
-            int rows = mapper.updateIsParentById(id, isParent);
-            // 断言受影响的行数为0
-            assertEquals(0, rows);
-        });
-    }
 
 
 

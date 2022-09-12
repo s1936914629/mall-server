@@ -2,6 +2,7 @@ package cn.org.sqx.mall.product.webapi.mapper;
 
 import cn.org.sqx.mall.pojo.entity.Category;
 import cn.org.sqx.mall.pojo.vo.CategorySimpleVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -27,4 +28,21 @@ public interface CategoryMapper {
      * @return “类别”的简单信息
      */
     CategorySimpleVO getByName(String name);
+
+    /**
+     * 根据“类别”id修改“是否为父级类别”
+     *
+     * @param id       “类别”id
+     * @param isParent 是否为父级类别，1=是，0=否
+     * @return 受影响的行数
+     */
+    int updateIsParentById(@Param("id") Long id, @Param("isParent") Integer isParent);
+
+    /**
+     * 根据“类别”id查询“类别”的简单信息
+     *
+     * @param id “类别”id
+     * @return “类别”的简单信息
+     */
+    CategorySimpleVO getById(Long id);
 }

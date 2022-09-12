@@ -24,6 +24,10 @@
             <groupId>cn.org.sqx</groupId>
             <artifactId>mall-pojo</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.org.sqx</groupId>
+            <artifactId>csmall-product-service</artifactId>
+        </dependency>
         <!-- Spring Boot Validation：验证请求参数的基本格式 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

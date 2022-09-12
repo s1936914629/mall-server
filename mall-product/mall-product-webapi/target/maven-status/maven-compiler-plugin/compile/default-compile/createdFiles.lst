@@ -1,3 +1,4 @@
-cn\org\sqx\mall\product\webapi\config\MybatisConfiguration.class
 cn\org\sqx\mall\product\webapi\mapper\CategoryMapper.class
+cn\org\sqx\mall\product\webapi\config\MybatisConfiguration.class
+cn\org\sqx\mall\product\webapi\service\CategoryServiceImpl.class
 cn\org\sqx\mall\product\webapi\MallProductWebapiApplication.class

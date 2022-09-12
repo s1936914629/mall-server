@@ -1,1 +1,1 @@
-insert into pms_category (name) value ('类别001'), ('类别002');
+insert into pms_category (name,id) value ('类别001',1), ('类别002',2);

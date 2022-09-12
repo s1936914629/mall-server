@@ -10,5 +10,9 @@ import java.io.Serializable;
  */
 @Data
 public class CategorySimpleVO implements Serializable {
+
     private Long id;
+    private Integer depth;
+    private Integer isParent;
+
 }

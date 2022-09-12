@@ -1,6 +1,7 @@
 package cn.org.sqx.mall.product.webapi.mapper;
 
 import cn.org.sqx.mall.pojo.entity.Category;
+import cn.org.sqx.mall.pojo.vo.CategorySimpleVO;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,5 +20,11 @@ public interface CategoryMapper {
      */
     int insert(Category category);
 
-    // 查询--待定
+    /**
+     * 根据“类别”名称查询“类别”的简单信息
+     *
+     * @param name “类别”名称
+     * @return “类别”的简单信息
+     */
+    CategorySimpleVO getByName(String name);
 }

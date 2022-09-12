@@ -13,4 +13,13 @@
                 #{icon}, #{enable}, #{isParent}, #{isDisplay}, #{gmtCreate},
                 #{gmtModified})
     </insert>
+
+    <!-- CategorySimpleVO getByName(String name); -->
+    <select id="getByName" resultMap="SimpleResultMap">
+        select id from pms_category where name=#{name};
+    </select>
+
+    <resultMap id="SimpleResultMap" type="cn.org.sqx.mall.pojo.vo.CategorySimpleVO">
+        <id column="id" property="id" />
+    </resultMap>
 </mapper>

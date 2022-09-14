@@ -2,6 +2,7 @@ package cn.org.sqx.mall.pojo.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -11,7 +12,9 @@ import java.io.Serializable;
 @Data
 public class CategoryAddNewDTO implements Serializable {
 
+    @NotNull(message = "添加类别失败，必须填写类别名称！")
     private String name;                //类别名称
+
     private Long parentId;              //父级id，如果无父级，则为0
     private String keywords;            //关键词列表
     private Integer sort;               //排序序号

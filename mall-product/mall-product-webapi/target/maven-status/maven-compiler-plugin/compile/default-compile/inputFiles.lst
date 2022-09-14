@@ -1,4 +1,6 @@
 F:\Java\study\selfStudy\DProcess\Project\mall-server\mall-product\mall-product-webapi\src\main\java\cn\org\sqx\mall\product\webapi\mapper\CategoryMapper.java
+F:\Java\study\selfStudy\DProcess\Project\mall-server\mall-product\mall-product-webapi\src\main\java\cn\org\sqx\mall\product\webapi\config\SpringMvcConfiguration.java
+F:\Java\study\selfStudy\DProcess\Project\mall-server\mall-product\mall-product-webapi\src\main\java\cn\org\sqx\mall\product\webapi\controller\CategoryController.java
 F:\Java\study\selfStudy\DProcess\Project\mall-server\mall-product\mall-product-webapi\src\main\java\cn\org\sqx\mall\product\webapi\service\CategoryServiceImpl.java
 F:\Java\study\selfStudy\DProcess\Project\mall-server\mall-product\mall-product-webapi\src\main\java\cn\org\sqx\mall\product\webapi\config\MybatisConfiguration.java
 F:\Java\study\selfStudy\DProcess\Project\mall-server\mall-product\mall-product-webapi\src\main\java\cn\org\sqx\mall\product\webapi\MallProductWebapiApplication.java

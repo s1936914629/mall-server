@@ -1,3 +1,5 @@
+cn\org\sqx\mall\common\config\CsmallCommonConfiguration.class
+cn\org\sqx\mall\common\ex\handler\GlobalExceptionHandler.class
 cn\org\sqx\mall\common\ex\ServiceException.class
 cn\org\sqx\mall\common\web\State.class
 cn\org\sqx\mall\common\web\JsonResult.class

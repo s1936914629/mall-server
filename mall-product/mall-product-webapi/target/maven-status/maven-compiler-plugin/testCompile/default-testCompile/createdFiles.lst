@@ -1,3 +1,4 @@
 cn\org\sqx\mall\product\webapi\mapper\CategoryMapperTests.class
 cn\org\sqx\mall\product\webapi\service\CategoryServiceTests.class
+cn\org\sqx\mall\product\webapi\controller\CategoryControllerTests.class
 cn\org\sqx\mall\product\webapi\MallProductWebapiApplicationTests.class

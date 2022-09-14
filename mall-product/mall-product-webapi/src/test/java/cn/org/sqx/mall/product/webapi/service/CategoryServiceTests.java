@@ -2,11 +2,14 @@ package cn.org.sqx.mall.product.webapi.service;
 
 import cn.org.sqx.mall.common.ex.ServiceException;
 import cn.org.sqx.mall.pojo.dto.CategoryAddNewDTO;
+import cn.org.sqx.mall.pojo.vo.CategorySimpleListItemVO;
 import cn.org.sqx.mall.product.service.ICategoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -63,6 +66,20 @@ public class CategoryServiceTests {
             // 执行测试
             service.addNew(category);
         });
+    }
+
+    @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    public void testListByParentId() {
+        // 测试数据
+        Long parentId = 1L;
+        // 执行测试，获取查询结果
+        List<CategorySimpleListItemVO> list = service.listByParentId(parentId);
+        // 查看结果
+        System.out.println("查询结果数量：" + list.size());
+        for (CategorySimpleListItemVO item : list) {
+            System.out.println(item);
+        }
     }
 
 }

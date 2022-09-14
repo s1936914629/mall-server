@@ -4,15 +4,16 @@ import cn.org.sqx.mall.common.ex.ServiceException;
 import cn.org.sqx.mall.common.web.State;
 import cn.org.sqx.mall.pojo.dto.CategoryAddNewDTO;
 import cn.org.sqx.mall.pojo.entity.Category;
+import cn.org.sqx.mall.pojo.vo.CategorySimpleListItemVO;
 import cn.org.sqx.mall.pojo.vo.CategorySimpleVO;
 import cn.org.sqx.mall.product.service.ICategoryService;
 import cn.org.sqx.mall.product.webapi.mapper.CategoryMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @auther: sqx
@@ -25,7 +26,6 @@ public class CategoryServiceImpl implements ICategoryService {
     CategoryMapper categoryMapper;
 
     @Override
-    @Transactional
     public void addNew(CategoryAddNewDTO categoryAddNewDTO) {
         // 从参数中取出尝试添加的类别的名称
         String name = categoryAddNewDTO.getName();
@@ -93,6 +93,10 @@ public class CategoryServiceImpl implements ICategoryService {
 
     }
 
+    @Override
+    public List<CategorySimpleListItemVO> listByParentId(Long parentId) {
+        return categoryMapper.listByParentId(parentId);
+    }
 }
 
 

@@ -1,6 +1,7 @@
 package cn.org.sqx.mall.product.webapi.service;
 
 import cn.org.sqx.mall.common.ex.ServiceException;
+import cn.org.sqx.mall.common.web.State;
 import cn.org.sqx.mall.pojo.dto.CategoryAddNewDTO;
 import cn.org.sqx.mall.pojo.entity.Category;
 import cn.org.sqx.mall.pojo.vo.CategorySimpleVO;
@@ -9,6 +10,7 @@ import cn.org.sqx.mall.product.webapi.mapper.CategoryMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +25,7 @@ public class CategoryServiceImpl implements ICategoryService {
     CategoryMapper categoryMapper;
 
     @Override
+    @Transactional
     public void addNew(CategoryAddNewDTO categoryAddNewDTO) {
         // 从参数中取出尝试添加的类别的名称
         String name = categoryAddNewDTO.getName();
@@ -31,7 +34,7 @@ public class CategoryServiceImpl implements ICategoryService {
         // 判断查询结果是否不为null
         if (queryResult != null) {
             // 是：抛出ServiceException
-            throw new ServiceException();
+            throw new ServiceException(State.ERR_CATEGORY_NAME_DUPLICATE,"添加类别失败，父级类别不存在！");
         }
 
         // 从参数中取出父级类别的id：parentId
@@ -47,7 +50,7 @@ public class CategoryServiceImpl implements ICategoryService {
             // -- 判断查询结果是否为null
             if(parentCategory == null){
                 // -- 是：抛出ServiceException
-                throw new ServiceException();
+                throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND,"添加类别失败，父级类别不存在！");
             }
             // -- 否：当前depth >>> 父级depth + 1
             depth = parentCategory.getDepth() + 1;
@@ -73,7 +76,7 @@ public class CategoryServiceImpl implements ICategoryService {
         // 判断返回的受影响的行数是否不为1
         if(insert != 1){
             // 是：抛出ServiceException
-            throw new ServiceException();
+            throw new ServiceException(State.ERR_INSERT,"添加类别失败，服务器忙（"+State.ERR_INSERT.getValue()+"），请稍后再次尝试！");
         }
 
         // 判断父级类别的isParent是否为0
@@ -84,7 +87,7 @@ public class CategoryServiceImpl implements ICategoryService {
             // 判断返回的受影响的行数是否不为1
             if(insert != 1){
                 // 是：抛出ServiceException
-                throw new ServiceException();
+                throw new ServiceException(State.ERR_UPDATE,"添加类别失败，服务器忙（" + State.ERR_UPDATE.getValue() + "），请稍后再次尝试！");
             }
         }
 

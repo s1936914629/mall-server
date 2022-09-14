@@ -18,38 +18,61 @@
     <update id="updateIsParentById">
         update
             pms_category
-        set
-            is_parent=#{isParent}
-        where
-              id = #{id};
+        set is_parent=#{isParent}
+        where id = #{id};
     </update>
 
     <!-- CategorySimpleVO getByName(String name); -->
     <select id="getByName" resultMap="SimpleResultMap">
         select
-            <include refid="SimpleQueryFields"/>
+        <include refid="SimpleQueryFields"/>
         from
-             pms_category
+        pms_category
         where
-              name = #{name};
+        name = #{name};
     </select>
 
     <!-- CategorySimpleVO getById(Long id); -->
     <select id="getById" resultMap="SimpleResultMap">
         select
-            <include refid="SimpleQueryFields"/>
+        <include refid="SimpleQueryFields"/>
         from
-             pms_category
+        pms_category
         where
-              id=#{id};
+        id=#{id};
     </select>
+
+    <!-- List<CategorySimpleListItemVO> listByParentId(Long parentId); -->
+    <select id="listByParentId" resultMap="SimpleListResultMap">
+        select
+        <include refid="SimpleListQueryFields"/>
+        from
+        pms_category
+        where
+        parent_id=#{id} and enable=1 and is_display=1
+        order by
+        sort desc, gmt_modified desc
+    </select>
+
+    <sql id="SimpleListQueryFields">
+        <if test="true">
+            id, name, sort, icon, is_parent
+        </if>
+    </sql>
+
+    <resultMap id="SimpleListResultMap" type="cn.org.sqx.mall.pojo.vo.CategorySimpleListItemVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sort" property="sort"/>
+        <result column="icon" property="icon"/>
+        <result column="is_parent" property="isParent"/>
+    </resultMap>
 
     <sql id="SimpleQueryFields">
         <if test="true">
             id, depth, is_parent
         </if>
     </sql>
-
     <resultMap id="SimpleResultMap" type="cn.org.sqx.mall.pojo.vo.CategorySimpleVO">
         <id column="id" property="id"/>
         <result column="depth" property="depth"/>

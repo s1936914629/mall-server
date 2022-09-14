@@ -1,9 +1,12 @@
 package cn.org.sqx.mall.product.webapi.mapper;
 
 import cn.org.sqx.mall.pojo.entity.Category;
+import cn.org.sqx.mall.pojo.vo.CategorySimpleListItemVO;
 import cn.org.sqx.mall.pojo.vo.CategorySimpleVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 处理“类别”数据的持久层接口
@@ -45,4 +48,12 @@ public interface CategoryMapper {
      * @return “类别”的简单信息
      */
     CategorySimpleVO getById(Long id);
+
+    /**
+     * 根据父级"类别"查询其所有子级"类别"
+     *
+     * @param parentId 父级"类别"的id
+     * @return 此父级"类别"下的所有子级"类别"的列表
+     */
+    List<CategorySimpleListItemVO> listByParentId(Long parentId);
 }

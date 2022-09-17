@@ -4,6 +4,7 @@ import cn.org.sqx.mall.common.ex.ServiceException;
 import cn.org.sqx.mall.common.web.State;
 import cn.org.sqx.mall.pojo.dto.CategoryAddNewDTO;
 import cn.org.sqx.mall.pojo.entity.Category;
+import cn.org.sqx.mall.pojo.vo.CategoryDetailsVO;
 import cn.org.sqx.mall.pojo.vo.CategorySimpleListItemVO;
 import cn.org.sqx.mall.pojo.vo.CategorySimpleVO;
 import cn.org.sqx.mall.product.service.ICategoryService;
@@ -91,6 +92,15 @@ public class CategoryServiceImpl implements ICategoryService {
             }
         }
 
+    }
+
+    @Override
+    public CategoryDetailsVO getDetailsById(Long id) {
+        CategoryDetailsVO category = categoryMapper.getDetailsById(id);
+        if (category == null) {
+            throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND, "获取类别详情失败，尝试访问的数据不存在！");
+        }
+        return category;
     }
 
     @Override

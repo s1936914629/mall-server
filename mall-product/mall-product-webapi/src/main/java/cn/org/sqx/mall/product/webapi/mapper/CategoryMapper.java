@@ -1,6 +1,7 @@
 package cn.org.sqx.mall.product.webapi.mapper;
 
 import cn.org.sqx.mall.pojo.entity.Category;
+import cn.org.sqx.mall.pojo.vo.CategoryDetailsVO;
 import cn.org.sqx.mall.pojo.vo.CategorySimpleListItemVO;
 import cn.org.sqx.mall.pojo.vo.CategorySimpleVO;
 import org.apache.ibatis.annotations.Param;
@@ -24,13 +25,6 @@ public interface CategoryMapper {
      */
     int insert(Category category);
 
-    /**
-     * 根据“类别”名称查询“类别”的简单信息
-     *
-     * @param name “类别”名称
-     * @return “类别”的简单信息
-     */
-    CategorySimpleVO getByName(String name);
 
     /**
      * 根据“类别”id修改“是否为父级类别”
@@ -42,6 +36,14 @@ public interface CategoryMapper {
     int updateIsParentById(@Param("id") Long id, @Param("isParent") Integer isParent);
 
     /**
+     * 根据“类别”名称查询“类别”的简单信息
+     *
+     * @param name “类别”名称
+     * @return “类别”的简单信息
+     */
+    CategorySimpleVO getByName(String name);
+
+    /**
      * 根据“类别”id查询“类别”的简单信息
      *
      * @param id “类别”id
@@ -50,10 +52,20 @@ public interface CategoryMapper {
     CategorySimpleVO getById(Long id);
 
     /**
+     * 根据“类别”id查询“类别”的详细信息
+     *
+     * @param id “类别”id
+     * @return “类别”的详细信息
+     */
+    CategoryDetailsVO getDetailsById(Long id);
+
+    /**
      * 根据父级"类别"查询其所有子级"类别"
      *
      * @param parentId 父级"类别"的id
      * @return 此父级"类别"下的所有子级"类别"的列表
      */
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
+
+
 }

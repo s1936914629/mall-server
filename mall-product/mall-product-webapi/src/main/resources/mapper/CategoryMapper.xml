@@ -18,8 +18,10 @@
     <update id="updateIsParentById">
         update
             pms_category
-        set is_parent=#{isParent}
-        where id = #{id};
+        set
+            is_parent=#{isParent}
+        where
+              id = #{id};
     </update>
 
     <!-- CategorySimpleVO getByName(String name); -->
@@ -27,9 +29,9 @@
         select
         <include refid="SimpleQueryFields"/>
         from
-        pms_category
+            pms_category
         where
-        name = #{name};
+            name = #{name};
     </select>
 
     <!-- CategorySimpleVO getById(Long id); -->
@@ -37,36 +39,32 @@
         select
         <include refid="SimpleQueryFields"/>
         from
-        pms_category
+            pms_category
         where
-        id=#{id};
+            id=#{id};
+    </select>
+
+    <!-- CategoryDetailsVO getDetailsById(Long id); -->
+    <select id="getDetailsById" resultMap="DetailsResultMap">
+        select
+            <include refid="DetailsQueryFields"/>
+        from
+            pms_category
+        where
+            id=#{id}
     </select>
 
     <!-- List<CategorySimpleListItemVO> listByParentId(Long parentId); -->
     <select id="listByParentId" resultMap="SimpleListResultMap">
         select
-        <include refid="SimpleListQueryFields"/>
+            <include refid="SimpleListQueryFields"/>
         from
-        pms_category
+            pms_category
         where
-        parent_id=#{id} and enable=1 and is_display=1
+            parent_id=#{id} and enable=1 and is_display=1
         order by
-        sort desc, gmt_modified desc
+            sort desc, gmt_modified desc
     </select>
-
-    <sql id="SimpleListQueryFields">
-        <if test="true">
-            id, name, sort, icon, is_parent
-        </if>
-    </sql>
-
-    <resultMap id="SimpleListResultMap" type="cn.org.sqx.mall.pojo.vo.CategorySimpleListItemVO">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="sort" property="sort"/>
-        <result column="icon" property="icon"/>
-        <result column="is_parent" property="isParent"/>
-    </resultMap>
 
     <sql id="SimpleQueryFields">
         <if test="true">
@@ -78,4 +76,38 @@
         <result column="depth" property="depth"/>
         <result column="isParent" property="isParent"/>
     </resultMap>
+
+    <sql id="SimpleListQueryFields">
+        <if test="true">
+            id, name, sort, icon, is_parent
+        </if>
+    </sql>
+    <resultMap id="SimpleListResultMap" type="cn.org.sqx.mall.pojo.vo.CategorySimpleListItemVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sort" property="sort"/>
+        <result column="icon" property="icon"/>
+        <result column="is_parent" property="isParent"/>
+    </resultMap>
+
+    <sql id="DetailsQueryFields">
+        <if test="true">
+            id, name, parent_id, depth, keywords,
+            sort, icon, enable, is_parent, is_display
+        </if>
+    </sql>
+    <resultMap id="DetailsResultMap" type="cn.org.sqx.mall.pojo.vo.CategoryDetailsVO">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="parent_id" property="parentId" />
+        <result column="depth" property="depth" />
+        <result column="keywords" property="keywords" />
+        <result column="sort" property="sort" />
+        <result column="icon" property="icon" />
+        <result column="enable" property="enable" />
+        <result column="is_parent" property="isParent" />
+        <result column="is_display" property="isDisplay" />
+    </resultMap>
+
+
 </mapper>

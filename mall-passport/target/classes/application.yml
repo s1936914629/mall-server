@@ -1,0 +1,17 @@
+# 激活Profile配置
+spring:
+  profiles:
+    active: dev
+  # 连接数据库的固定配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+
+# Mybatis的XML文件位置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+# Knife4j增强模式
+knife4j:
+  enable: true
+
+

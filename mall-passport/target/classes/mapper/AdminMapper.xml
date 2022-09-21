@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.org.sqx.mall.passport.mapper.AdminMapper">
+
+    <!-- AdminLoginVO getLoginInfoByUsername(String username); -->
+    <select id="getLoginInfoByUsername" resultMap="LoginInfoResultMap">
+        select
+        <include refid="LoginInfoQueryFields"/>
+        from
+        ams_admin
+        left join ams_admin_role on ams_admin.id = ams_admin_role.admin_id
+        left join ams_role_permission
+        on ams_admin_role.role_id = ams_role_permission.role_id
+        left join ams_permission
+        on ams_role_permission.permission_id = ams_permission.id
+        where username=#{username}
+    </select>
+
+    <sql id="LoginInfoQueryFields">
+        <if test="true">
+            ams_admin.id,
+            ams_admin.username,
+            ams_admin.password,
+            ams_admin.is_enable,
+            ams_permission.value
+        </if>
+    </sql>
+
+    <resultMap id="LoginInfoResultMap" type="cn.org.sqx.mall.pojo.vo.AdminLoginVO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="is_enable" property="isEnable"/>
+        <collection property="permissions" ofType="java.lang.String">
+            <!-- 以下配置类似在Java中执行 new String("/pms/product/read") -->
+            <constructor>
+                <arg column="value"/>
+            </constructor>
+        </collection>
+    </resultMap>
+
+</mapper>

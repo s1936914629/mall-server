@@ -1,7 +1,10 @@
-cn\org\sqx\mall\product\webapi\controller\CategoryController.class
-cn\org\sqx\mall\product\webapi\mapper\CategoryMapper.class
-cn\org\sqx\mall\product\webapi\config\RedisConfiguration.class
+cn\org\sqx\mall\product\webapi\app\CachePreLoad.class
+cn\org\sqx\mall\product\webapi\repository\impl\CategoryRedisRepositoryImpl.class
 cn\org\sqx\mall\product\webapi\config\MybatisConfiguration.class
 cn\org\sqx\mall\product\webapi\config\SpringMvcConfiguration.class
 cn\org\sqx\mall\product\webapi\service\CategoryServiceImpl.class
+cn\org\sqx\mall\product\webapi\controller\CategoryController.class
+cn\org\sqx\mall\product\webapi\mapper\CategoryMapper.class
+cn\org\sqx\mall\product\webapi\config\RedisConfiguration.class
+cn\org\sqx\mall\product\webapi\repository\ICategoryRedisRepository.class
 cn\org\sqx\mall\product\webapi\MallProductWebapiApplication.class

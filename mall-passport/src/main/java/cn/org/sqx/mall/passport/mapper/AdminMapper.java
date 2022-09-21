@@ -1,11 +1,13 @@
 package cn.org.sqx.mall.passport.mapper;
 
 import cn.org.sqx.mall.pojo.vo.AdminLoginVO;
+import org.springframework.stereotype.Repository;
 
 /**
  * @auther: sqx
  * @Date: 2022-09-21
  */
+@Repository
 public interface AdminMapper {
 
     /**

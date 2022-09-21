@@ -1,1 +1,3 @@
+cn\org\sqx\mall\passport\config\MybatisConfiguration.class
+cn\org\sqx\mall\passport\mapper\AdminMapper.class
 cn\org\sqx\mall\passport\MallPassportApplication.class

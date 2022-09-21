@@ -2,4 +2,5 @@ cn\org\sqx\mall\pojo\vo\CategorySimpleVO.class
 cn\org\sqx\mall\pojo\entity\Category.class
 cn\org\sqx\mall\pojo\vo\CategorySimpleListItemVO.class
 cn\org\sqx\mall\pojo\dto\CategoryAddNewDTO.class
+cn\org\sqx\mall\pojo\vo\AdminLoginVO.class
 cn\org\sqx\mall\pojo\vo\CategoryDetailsVO.class

@@ -7,6 +7,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @auther: sqx
@@ -33,6 +35,24 @@ public class CategoryRedisRepositoryImpl implements ICategoryRedisRepository {
     public void save(CategoryDetailsVO category) {
         String key = KEY_CATEGORY_ITEM_PREFIX + category.getId();
         redisTemplate.opsForValue().set(key, category);
+    }
+
+    @Override
+    public void save(List<CategoryDetailsVO> categories) {
+        for (CategoryDetailsVO category : categories) {
+            redisTemplate.opsForList().rightPush(KEY_CATEGORY_LIST, category);
+        }
+    }
+
+    @Override
+    public void deleteAllItem() {
+        Set<String> keys = redisTemplate.keys(KEY_CATEGORY_LIST + "*");
+        redisTemplate.delete(keys);
+    }
+
+    @Override
+    public Boolean deleteList() {
+        return redisTemplate.delete(KEY_CATEGORY_LIST);
     }
 
     @Override

@@ -147,13 +147,32 @@ public class CategoryServiceImpl implements ICategoryService {
         // 返回查询结果
         log.debug("返回查询到数据：{}", dbResult);
         return dbResult;
-
-
     }
 
     @Override
     public List<CategorySimpleListItemVO> listByParentId(Long parentId) {
         return categoryMapper.listByParentId(parentId);
+    }
+
+    @Override
+    public void preloadCache() {
+        log.debug("删除缓存中的类别列表……");
+        categoryRedisRepository.deleteList();
+
+        log.debug("删除缓存中的各独立的类别数据……");
+        categoryRedisRepository.deleteAllItem();
+
+        log.debug("从数据库查询类别列表……");
+        List<CategoryDetailsVO> list = categoryMapper.list();
+
+        for (CategoryDetailsVO category : list) {
+            log.debug("查询结果：{}", category);
+            log.debug("将当前类别存入到Redis：{}", category);
+            categoryRedisRepository.save(category);
+        }
+        log.debug("将类别列表写入到Redis……");
+        categoryRedisRepository.save(list);
+        log.debug("将类别列表写入到Redis完成！");
     }
 }
 

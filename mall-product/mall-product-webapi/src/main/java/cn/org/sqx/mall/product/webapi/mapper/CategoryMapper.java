@@ -67,5 +67,12 @@ public interface CategoryMapper {
      */
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
+    /**
+     * 查询所有“类别”
+     *
+     * @return 所有“类别”的列表
+     */
+    List<CategoryDetailsVO> list();
+
 
 }

@@ -37,6 +37,10 @@ public interface ICategoryService {
      */
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
+    /**
+     * 预热类别数据的缓存
+     */
+    void preloadCache();
 
 
 

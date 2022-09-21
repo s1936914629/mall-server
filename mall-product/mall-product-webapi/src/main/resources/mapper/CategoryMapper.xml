@@ -54,16 +54,28 @@
             id=#{id}
     </select>
 
+    <!-- List<CategoryDetailsVO> list(); -->
+    <select id="list" resultMap="DetailsResultMap">
+        select
+            <include refid="DetailsQueryFields" />
+        from
+             pms_category
+        where
+              enable = 1 and is_display =1
+        order by
+              sort desc ,gmt_modified desc
+    </select>
+
     <!-- List<CategorySimpleListItemVO> listByParentId(Long parentId); -->
     <select id="listByParentId" resultMap="SimpleListResultMap">
         select
-            <include refid="SimpleListQueryFields"/>
+        <include refid="SimpleListQueryFields"/>
         from
-            pms_category
+        pms_category
         where
-            parent_id=#{id} and enable=1 and is_display=1
+        parent_id=#{id} and enable=1 and is_display=1
         order by
-            sort desc, gmt_modified desc
+        sort desc, gmt_modified desc
     </select>
 
     <sql id="SimpleQueryFields">

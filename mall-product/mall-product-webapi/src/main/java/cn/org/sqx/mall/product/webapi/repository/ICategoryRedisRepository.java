@@ -2,6 +2,8 @@ package cn.org.sqx.mall.product.webapi.repository;
 
 import cn.org.sqx.mall.pojo.vo.CategoryDetailsVO;
 
+import java.util.List;
+
 /**
  * @auther: sqx
  * @Date: 2022-09-20
@@ -12,6 +14,10 @@ public interface ICategoryRedisRepository {
      * 类别数据的KEY的前缀
      */
     String KEY_CATEGORY_ITEM_PREFIX = "categories:item:";
+    /**
+     * 类别列表的KEY
+     */
+    String KEY_CATEGORY_LIST = "categories:list";
 
     /**
      * 判断是否存在id对应的缓存数据
@@ -34,6 +40,25 @@ public interface ICategoryRedisRepository {
      * @param category 类别列表
      */
     void save(CategoryDetailsVO category);
+
+    /**
+     * 将类别的列表存入到Redis中
+     *
+     * @param categories 类别列表
+     */
+    void save(List<CategoryDetailsVO> categories);
+
+    /**
+     * 删除Redis中各独立存储的类别数据
+     */
+    void deleteAllItem();
+
+    /**
+     * 删除Redis中的类别列表
+     *
+     * @return 如果成功删除，则返回true，否则返回false
+     */
+    Boolean deleteList();
 
     /**
      * 根据类别id获取类别详情

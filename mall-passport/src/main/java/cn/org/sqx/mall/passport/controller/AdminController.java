@@ -20,10 +20,16 @@ public class AdminController {
     IAdminService adminService;
 
     // http://localhost:8080/admins/login?username=root&password=123456
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public JsonResult<String> login(AdminLoginDTO adminLoginDTO) {
         String jwt = adminService.login(adminLoginDTO);
         return JsonResult.ok(jwt);
+    }
+
+    // 以下是测试访问的请求
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "hello~~~";
     }
 
 }

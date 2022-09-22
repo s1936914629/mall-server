@@ -1,7 +1,9 @@
 package cn.org.sqx.mall.passport.service.impl;
 
+import cn.org.sqx.mall.passport.security.JwtConst;
 import cn.org.sqx.mall.passport.service.IAdminService;
 import cn.org.sqx.mall.pojo.dto.AdminLoginDTO;
+import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -45,8 +47,9 @@ public class AdminServiceImpl implements IAdminService {
         User user = (User) authenticate.getPrincipal();
         System.out.println("从认证结果中获取Principal=" + user.getClass().getName());
         Map<String, Object> claims = new HashMap<>();
-        claims.put("username", user.getUsername());
-        claims.put("permissions", user.getAuthorities());
+        claims.put(JwtConst.KEY_USERNAME, user.getUsername());
+        // TODO 转换为JSON不然数据转换出异常
+        claims.put(JwtConst.KEY_PERMISSIONS, JSON.toJSONString(user.getAuthorities()));
         System.out.println("即将向JWT中写入数据=" + claims);
 
         // JWT的组成部分：Header（头），Payload（载荷），Signature（签名）

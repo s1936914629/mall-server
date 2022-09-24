@@ -13,3 +13,8 @@ logging:
       org:
         sqx:
           mall: trace
+
+# JWT密钥，注意：最短需要4个字符，推荐使用20字符以上，且应该由大写字母、小写字母、数字、标点符号组成
+mall:
+   jwt:
+     secret-key: mjqhrgx
